@@ -81,3 +81,34 @@ const saveChanges = () => {
   updateLocalStorage();
   // provide some unique identification, i.e key, here key is "blog",
 };
+
+// function for deleting a card -------------------
+
+const deleteCard = (event) => {
+  // id
+  event = window.event;
+  const targetID = event.target.id;
+  const tagname = event.target.tagName; // BUTTON OR I
+
+  // assign the same id of card to button also
+
+  // search the globalStore, remove the object which matches with the id
+  globalStore = globalStore.filter((blogObject) => blogObject.id !== targetID);
+
+  updateLocalStorage();
+
+  // access DOM to remove them
+
+  if (tagname === "BUTTON") {
+    // task__container
+    return blogContainer.removeChild(
+      event.target.parentNode.parentNode.parentNode // col-lg-4
+    );
+  }
+
+  // else
+  // blog__container
+  return blogContainer.removeChild(
+    event.target.parentNode.parentNode.parentNode.parentNode // col-lg-4
+  );
+};
