@@ -59,8 +59,14 @@ const updateLocalStorage = () => {
 
 ## Screenshots
 
+<img width="960" alt="ss1" src="https://user-images.githubusercontent.com/93200960/211460092-29588e43-c124-4b8d-b7d8-6286d3058d2b.png">
+
 Click on the `Add New`, UI looks like:
 
+<img width="946" alt="ss2" src="https://user-images.githubusercontent.com/93200960/211460127-438109d9-fdd2-4c0a-97b5-b1c1a47919a0.png">
+
 Click on the `Open Blog`, UI looks like:
+
+<img width="947" alt="ss3" src="https://user-images.githubusercontent.com/93200960/211460149-fb5f85da-78f9-4cca-99fd-ebe3779ca832.png">
 
 ## Live Demo
