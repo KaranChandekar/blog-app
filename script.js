@@ -196,3 +196,34 @@ const saveEditChanges = (event) => {
 
   submitBtn.innerHTML = "Open Blog";
 };
+
+const htmlModalContent = ({
+  id,
+  blogTitle,
+  blogDescription,
+  imageUrl,
+  blogType,
+}) => {
+  const date = new Date(parseInt(id));
+  return ` <div id=${id}>
+   <img
+   src=${imageUrl}
+   alt="bg image"
+   class="img-fluid place__holder__image mb-3 p-4"
+   />
+   <div class="text-sm text-muted ">Created on ${date.toDateString()}</div>
+   <h2 class="my-5 mt-5" style="display:inline;">${blogTitle}</h2>
+   <span class="badge bg-primary">${blogType}</span>
+   <p class="lead mt-2">
+   ${blogDescription}
+   </p></div>`;
+};
+
+const openBlog = (event) => {
+  event = window.event;
+  const targetID = event.target.id;
+
+  const getBlog = globalStore.filter(({ id }) => id === targetID);
+  // console.log(getBlog[0]);
+  blogModal.innerHTML = htmlModalContent(getBlog[0]);
+};
