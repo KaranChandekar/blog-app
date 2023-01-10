@@ -112,3 +112,35 @@ const deleteCard = (event) => {
     event.target.parentNode.parentNode.parentNode.parentNode // col-lg-4
   );
 };
+
+// function for editing
+const editCard = (event) => {
+  event = window.event;
+  const targetID = event.target.id;
+  const tagname = event.target.tagName;
+
+  let parentElement;
+  if (tagname === "BUTTON") {
+    parentElement = event.target.parentNode.parentNode;
+  } else {
+    parentElement = event.target.parentNode.parentNode.parentNode;
+  }
+
+  let blogTitle = parentElement.childNodes[5].childNodes[1];
+  let blogDescription = parentElement.childNodes[5].childNodes[3];
+  let blogType = parentElement.childNodes[5].childNodes[5];
+  let submitBtn = parentElement.childNodes[7].childNodes[1];
+  // console.log(taskTitle, taskDescription, taskType);
+
+  // setAttributes
+  blogTitle.setAttribute("contenteditable", "true");
+
+  blogDescription.setAttribute("contenteditable", "true");
+  blogType.setAttribute("contenteditable", "true");
+  submitBtn.setAttribute("onclick", "saveEditChanges.apply(this, arguments)");
+  submitBtn.innerHTML = "Save Changes";
+
+  //  modal removed
+  submitBtn.removeAttribute("data-bs-toggle");
+  submitBtn.removeAttribute("data-bs-target");
+};
