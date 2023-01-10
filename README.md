@@ -56,3 +56,11 @@ const updateLocalStorage = () => {
   );
 };
 ```
+
+## Screenshots
+
+Click on the `Add New`, UI looks like:
+
+Click on the `Open Blog`, UI looks like:
+
+## Live Demo
