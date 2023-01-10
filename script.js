@@ -59,3 +59,25 @@ const updateLocalStorage = () => {
     })
   );
 };
+
+//  function for save changes----------------------------------------
+
+// create a function which will trigerred on clicking on save changes in the modal
+const saveChanges = () => {
+  const blogData = {
+    id: `${Date.now()}`, // generating a unique id for each card
+    imageUrl: document.getElementById("imageurl").value,
+    blogTitle: document.getElementById("title").value,
+    blogType: document.getElementById("type").value,
+    blogDescription: document.getElementById("description").value,
+  };
+
+  const createNewBlog = newCard(blogData);
+  blogContainer.insertAdjacentHTML("beforeend", createNewBlog);
+
+  globalStore.push(blogData);
+
+  //  API  -> add t localStorage
+  updateLocalStorage();
+  // provide some unique identification, i.e key, here key is "blog",
+};
