@@ -32,3 +32,30 @@ const newCard = ({
   </div>
 </div>
 </div>`;
+
+// --------------------------------------------------
+const loadData = () => {
+  // access localstorage
+  // localStorage.getItem("blog") ===  localStorage.blog
+  const getInitialData = localStorage.blog; // if null, then
+  if (!getInitialData) return;
+
+  // convert stringified-object to object
+  const { cards } = JSON.parse(getInitialData);
+
+  // map around the array to generate HTML card and inject it to DOM
+  cards.map((blogObject) => {
+    const createNewBlog = newCard(blogObject);
+    blogContainer.insertAdjacentHTML("beforeend", createNewBlog);
+    globalStore.push(blogObject);
+  });
+};
+
+const updateLocalStorage = () => {
+  localStorage.setItem(
+    "blog",
+    JSON.stringify({
+      cards: globalStore,
+    })
+  );
+};
