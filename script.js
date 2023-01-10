@@ -144,3 +144,55 @@ const editCard = (event) => {
   submitBtn.removeAttribute("data-bs-toggle");
   submitBtn.removeAttribute("data-bs-target");
 };
+
+const saveEditChanges = (event) => {
+  event = window.event;
+  const targetID = event.target.id;
+  const tagname = event.target.tagName;
+
+  let parentElement;
+  if (tagname === "BUTTON") {
+    parentElement = event.target.parentNode.parentNode;
+  } else {
+    parentElement = event.target.parentNode.parentNode.parentNode;
+  }
+
+  let blogTitle = parentElement.childNodes[5].childNodes[1];
+  let blogDescription = parentElement.childNodes[5].childNodes[3];
+  let blogType = parentElement.childNodes[5].childNodes[5];
+  let submitBtn = parentElement.childNodes[7].childNodes[1];
+
+  const updatedData = {
+    blogTitle: blogTitle.innerHTML,
+    blogDescription: blogDescription.innerHTML,
+    blogType: blogType.innerHTML,
+  };
+
+  // console.log(updatedData);
+  globalStore = globalStore.map((blog) => {
+    if (blog.id === targetID) {
+      return {
+        id: blog.id,
+        imageUrl: blog.imageUrl,
+        blogTitle: updatedData.blogTitle,
+        blogType: updatedData.blogType,
+        blogDescription: updatedData.blogDescription,
+      };
+    }
+    return blog; // important statement
+  });
+
+  updateLocalStorage();
+
+  blogTitle.setAttribute("contenteditable", "false");
+
+  blogDescription.setAttribute("contenteditable", "false");
+  blogType.setAttribute("contenteditable", "false");
+
+  // modal added
+  submitBtn.setAttribute("onclick", "openBlog.apply(this, arguments)");
+  submitBtn.setAttribute("data-bs-toggle", "modal");
+  submitBtn.setAttribute("data-bs-target", "#showblog");
+
+  submitBtn.innerHTML = "Open Blog";
+};
